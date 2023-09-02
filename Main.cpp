@@ -39,6 +39,19 @@ GLuint indices[] =
 	3, 0, 4
 };
 
+GLfloat vertices2[] =
+{ //     COORDINATES     /        COLORS      /   TexCoord  //
+	-2.5f, 0.0f,  2.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
+	-2.5f, 0.0f, -2.5f,     0.83f, 0.70f, 0.44f,	5.0f, 0.0f,
+	 2.5f, 0.0f, -2.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
+	 2.5f, 0.0f,  2.5f,     0.83f, 0.70f, 0.44f,	5.0f, 0.0f
+};
+
+GLuint indices2[] =
+{
+	0, 1, 2,
+	0, 2, 3
+};
 
 int main()
 {
@@ -74,7 +87,21 @@ int main()
 	VAO1.Unbind();
 	VBO1.Unbind();
 	EBO1.Unbind();
+	//test
 
+	VAO VAO2;
+	VAO2.Bind();
+
+	VBO VBO2(vertices2, sizeof(vertices2));
+	EBO EBO2(indices2, sizeof(indices2));
+	VAO2.LinkAttrib(VBO2, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
+	VAO2.LinkAttrib(VBO2, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	VAO2.LinkAttrib(VBO2, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+
+	VAO2.Unbind();
+	VBO2.Unbind();
+	EBO2.Unbind();
+	//test
 	
 	//texture
 	Texture popCat("./noimage.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGB, GL_UNSIGNED_BYTE);
@@ -93,15 +120,18 @@ int main()
 
 		camera.Inputs(window);
 		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
+		//lighting area
 
 
-		
 
-
-		
+		//lighting area
 		popCat.Bind();
 		VAO1.Bind();
+		
 		glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(int), GL_UNSIGNED_INT, 0);
+		
+		VAO2.Bind();
+		glDrawElements(GL_TRIANGLES, sizeof(indices2) / sizeof(int), GL_UNSIGNED_INT, 0);
 		glfwSwapBuffers(window);
 
 
@@ -113,6 +143,10 @@ int main()
 	VBO1.Delete();
 	EBO1.Delete();
 	
+	VAO2.Delete();
+	VBO2.Delete();
+	EBO2.Delete();
+
 	popCat.Delete();
 	shaderProgram.Delete();
 	glfwDestroyWindow(window);
