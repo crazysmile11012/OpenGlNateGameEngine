@@ -78,7 +78,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\Downloads\pop_cat.png">
+    <Image Include="noimage.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>
