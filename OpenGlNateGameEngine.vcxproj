@@ -162,9 +162,11 @@
     <ClInclude Include="VBO.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="grass1.png" />
     <Image Include="noimage.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="default1.frag" />
     <None Include="lamp.frag" />
     <None Include="lamp.vert" />
     <None Include="packages.config" />
