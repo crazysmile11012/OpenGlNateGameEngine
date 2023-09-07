@@ -26,7 +26,7 @@ Texture::Texture(const char* image, GLenum texType, GLenum slot, GLenum format, 
 	glTexParameteri(texType, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(texType, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	// Extra lines in case you choose to use GL_CLAMP_TO_BORDER
+	// Extra lines to use GL_CLAMP_TO_BORDER
 	// float flatColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
 	// glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, flatColor);
 
